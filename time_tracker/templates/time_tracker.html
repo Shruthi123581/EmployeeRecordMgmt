@@ -1,0 +1,116 @@
+{% extends 'TeamHbase.html' %}
+
+{% block content %}
+<center>
+  <h1>Employee Time Tracker</h1>
+  <form method="post">
+    {% csrf_token %}
+    <label for="employee_id">Employee ID:</label>
+    <input type="text" id="employee_id" name="employee_id">
+    <br><br>
+    <button type="submit" name="action" value="clock in">Clock In</button>
+    <button type="submit" name="action" value="clock out">Clock Out</button>
+  </form>
+  {% if status %}
+    <p style="color: {{ color }}">{{ status }}</p>
+  {% endif %}
+  {% if time_data %}
+    <h2>Employee Time Data</h2>
+    <table>
+      <tr>
+        <th>Employee ID</th>
+        <th>Clock In</th>
+        <th>Clock Out</th>
+        <th>Total Hours Worked</th>
+      </tr>
+      {% for employee_id, data in time_data.items %}
+        {% for entry in data.entries %}
+          <tr>
+            <td>{{ employee_id }}</td>
+            <td>{{ entry.0 }}</td>
+            <td>{{ entry.1 }}</td>
+            <td>{{ data.total_hours }}</td>
+          </tr>
+        {% endfor %}
+      {% endfor %}
+    </table>
+    <br>
+    
+  {% else %}
+    <br><p>No time data recorded yet.</p>
+  {% endif %}
+  <form method="get" action="{% url 'save_data' %}">
+    <button type="submit" style="background-color:orange">Save Data</button>
+  </form>
+  </center>
+{% endblock %}
+  <style>
+    body {
+      background-color: #f2f2f2;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    /* Style for the employee time tracker page */
+    h1 {
+        font-size: 32px;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 40px;
+        }
+
+    form {
+    margin-top: 20px;
+    text-align: center;
+    }
+
+    label {
+    font-size: 20px;
+    font-weight: bold;
+    }
+
+    input[type="text"] {
+    font-size: 20px;
+    margin-left: 10px;
+    padding: 5px;
+    width: 200px;
+    }
+
+    button[type="submit"] {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 20px;
+    padding: 10px;
+    }
+
+    table {
+    border-collapse: collapse;
+    margin: 20px auto;
+    width: 80%;
+    }
+
+    th, td {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+    }
+
+    th {
+    background-color: #f2f2f2;
+    font-size: 20px;
+    font-weight: bold;
+    }
+
+    .no-data {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 40px;
+    text-align: center;
+    }
+  </style>

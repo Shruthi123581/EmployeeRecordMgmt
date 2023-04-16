@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-6 offset-3">
+     <h2 class ="text-center alert alert-info">Add Employee</h2>
+     <form action="" method="POST">
+       {% csrf_token %}
+       {{form.as_p}}
+       <input type="submit" class="btn btn-success" value="Add">
+       <a href = "{% url 'employees' %}" class="btn btn-danger">Cancel</a>
+     </form>
+    </div>
+</div>
+
+
+
+{% endblock content %}

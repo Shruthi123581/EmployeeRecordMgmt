@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-6 offset-3">
+     <h2 class ="text-center alert alert-info">Add Employee</h2>
+     
+<form method="POST" action="">
+    {% csrf_token %}
+       
+
+      
+            {{profile_form.name.label_tag}}
+            {{profile_form.name}}
+       <br>
+            {{form.username.errors}}
+            {{form.username.label_tag}}
+            {{form.username}}
+            <br>
+            {{profile_form.email.label_tag}}
+            {{profile_form.email}}
+            <br>
+            {{profile_form.address.label_tag}}
+            {{profile_form.address}}
+
+            <br>
+            {{form.password1.label_tag}}
+            {{form.password1}}
+       
+            <br>
+            <br>
+            {{form.password2.errors}}
+            {{form.password2.label_tag}}
+            {{form.password2}}
+
+            <br>
+            {{profile_form.role.label_tag}}
+            {{profile_form.role}}
+            
+    <hr>
+    <input id="form-button" class="btn btn-success btn-block" type="submit" value="Create Profile">
+    <a href = "{% url 'employees' %}" class="btn btn-danger">Cancel</a>
+</form>
+</div>
+</div>
+
+
+
+{% endblock content %}

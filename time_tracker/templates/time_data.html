@@ -1,0 +1,16 @@
+{% extends "TeamHbase.html" %}
+
+{% block content %}
+<h1>Time Data</h1>
+
+{% for employee_id, data in time_data.items %}
+<h2>Employee ID: {{ employee_id }}</h2>
+<ul>
+{% for entry in data.entries %}
+<li>{{ entry.0 }} - {{ entry.1 }}</li>
+{% endfor %}
+</ul>
+<p>Total hours worked: {{ data.total_hours }}</p>
+{% endfor %}
+
+{% endblock %}

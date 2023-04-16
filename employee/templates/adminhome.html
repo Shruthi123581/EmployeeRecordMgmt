@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+      <!-- NAVBAR -->
+      
+      <!-- MAIN -->
+      {% block content %}
+      <style>
+        #container{
+        margin:20px;
+          
+        }
+         
+          #card{
+              width:100%;
+              height:100%;
+              padding:20px;
+          }
+         
+          /* Create two equal columns that floats next to each other */
+      .column {
+        float: left;
+        width: 25%;
+        padding: 10px;
+        
+      }
+      
+      /* Clear floats after the columns */
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+          
+          
+      </style><body>
+
+    <div id="container">
+      <div class="w3-container">
+        <div id="card" class="w3-panel w3-card"><div class="card-title">Welcome Admin</div>
+        </div>
+         
+      </div>
+     
+
+      <hr style="margin:18px; height:2px; width:97%; border-width:0; background-color:black">
+
+      <div class="w3-container">
+        <div class="row">
+          <div class="column">
+            <div id="card" class="w3-panel w3-card"><div class="card-title">Total Projects</div>
+            <hr style="height:2px; width:97%; border-width:0;  background-color:black">
+            <div class="card-body">
+              <p class="card-text">{{ total_project}}</p></div></div>
+          </div>
+          <div class="column">
+          <div id="card" class="w3-panel w3-card"><div class="card-title">Completed Projects</div>
+          <hr style="height:2px; width:97%; border-width:0;  background-color:black">
+          <div class="card-body">
+            <p class="card-text">Welcome Ad</p></div></div>
+        </div>
+
+        <div class="column">
+          <div id="card" class="w3-panel w3-card"><div class="card-title">Incomplteted Projects</div>
+          <hr style="height:2px; width:97%; border-width:0;  background-color:black">
+          <div class="card-body">
+            <p class="card-text">Welcome Ad</p></div></div>
+        </div> 
+
+        <div class="column"> 
+          <div id="card" class="w3-panel w3-card"><div class="card-title">Employees</div>
+          <hr style="height:2px; width:97%; border-width:0;  background-color:black">
+          <div class="card-body">
+            <p class="card-text">{{ total_employee}}</p></div></div>
+        </div> 
+
+      </div>
+    </div>
+  </div></body>
+        <!--div class="table-data">
+          <div class="order">
+            <div class="head">
+              <h3>Task Manager</h3>
+              <i class='bx bx-profile' ></i>
+              <i class='bx bx-logout' ></i>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>   Task Deatails</th>
+                  <th>   Attachment</th>
+                  <th>  Due Date</th>
+                  <th>  Status</th>
+                  <th>  Remark</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    ...
+                    <p>Create sign-up page front end</p>
+                  </td>
+                  <td>
+                    <i class='bx bx-log'></i>
+                  </td> 
+                  <td>01-10-2021</td>
+                  <td><span class="status completed">Completed</span></td>
+                  <td> <p> Completed with responsiveness</p></td>
+                </tr>
+                <tr>
+                  <td>
+                    ...
+                    <p>Create sign-up page front end</p>
+                  </td>
+                  <td>
+                    <i class='bx bx-log'></i>
+                  </td> 
+                  <td>01-10-2021</td>
+                  <td><span class="status pending">Completed</span></td>
+                  <td> <p> Completed with responsiveness</p></td>
+                </tr>
+              </tbody>
+            </table>
+        
+            <div class="table-data">
+              <div class="order">
+                <div class="head">
+                  <h3>Attendance Manager</h3>
+                  <i class='bx bx-profile' ></i>
+                  <i class='bx bx-logout' ></i>
+                </div>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>   Task Deatails</th>
+                      <th>   Attachment</th>
+                      <th>  Due Date</th>
+                      <th>  Status</th>
+                      <th>  Remark</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        ...
+                        <p>Create sign-up page front end</p>
+                      </td>
+                      <td>
+                        <i class='bx bx-log'></i>
+                      </td> 
+                      <td>01-10-2021</td>
+                      <td><span class="status completed">Completed</span></td>
+                      <td> <p> Completed with responsiveness</p></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        ...
+                        <p>Create sign-up page front end</p>
+                      </td>
+                      <td>
+                        <i class='bx bx-log'></i>
+                      </td> 
+                      <td>01-10-2021</td>
+                      <td><span class="status pending">Completed</span></td>
+                      <td> <p> Completed with responsiveness</p></td>
+                    </tr>
+                  </tbody>
+                </table>
+          </div>
+        </div-->
+      
+      {% endblock content %}
+      <!-- MAIN >
+    </section-->
+    <!-- CONTENT -->
+    
+    <!--script src="script.js"></script-->
+  </body>
+  
+</html>

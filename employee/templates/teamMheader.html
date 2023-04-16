@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+{% load static %}
+<!-- Created By CodingNepal -->
+<html lang="en" dir="ltr">
+  <head>
+    <title>Team Member</title>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- <title>Sider Menu Bar CSS</title> -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!--Stylesheet-->
+   
+
+    <style type="text/css">
+      @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      a {
+        text-decoration: none;
+      }
+      
+      li {
+        list-style: none;
+      }
+      
+      :root {
+        --poppins: 'Poppins', sans-serif;
+        --lato: 'Lato', sans-serif;
+        --light: #F9F9F9;
+        --blue: #3C91E6;
+        --light-blue: #CFE8FF;
+        --grey: #eee;
+        --dark-grey: #AAAAAA;
+        --dark: #342E37;
+        --red: #DB504A;
+        --yellow: #FFCE26;
+        --light-yellow: #FFF2C6;
+        --orange: #FD7238;
+        --light-orange: #FFE0D3;
+      }
+      
+      html {
+        overflow-x: hidden;
+      }
+      
+      body.dark {
+        --light: #0C0C1E;
+        --grey: #060714;
+        --dark: #FBFBFB;
+      }
+      
+      body {
+        background: var(--grey);
+        overflow-x: hidden;
+      }
+      
+      /* SIDEBAR */
+      #sidebar {
+        background-image: url('{% static 'images/sidebar.png'%}');
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 300px;
+        height: 100%;
+        z-index: 2000;
+        font-family: var(--lato);
+        transition: .3s ease;
+        overflow-x: hidden;
+        scrollbar-width: none;
+      }
+/*
+      #sidebar::--webkit-scrollbar {
+        display: none;
+      }
+
+      #sidebar.hide {
+        width: 60px;
+      }
+
+      #sidebar .brand {
+        font-size: 24px;
+        font-weight: 700;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        color: var(--blue);
+        position: sticky;
+        top: 0;
+        left: 0;
+        background: var(--light);
+        z-index: 500;
+        padding-bottom: 20px;
+        box-sizing: content-box;
+      }
+     #sidebar .brand .bx {
+      min-width: 60px;
+      display: flex;
+      justify-content: center;
+     }
+     
+
+      #sidebar .side-menu {
+        width: 100%;
+        margin-top: 48px;
+      }
+
+     
+
+      
+      #sidebar .side-menu li.active::after {
+        content: '';
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        bottom: -40px;
+        right: 0;
+        box-sizing:border-box;
+      }
+
+      #sidebar .side-menu li a {
+        width: 110%;
+        height: 100%;
+        display: block;
+        align-items: absolute;
+        font-size: 20px;
+        color: white;
+        white-space: nowrap;
+        overflow-x: hidden;
+      }
+      
+      
+     
+      #sidebar .side-menu.top a:hover:not(.active) {
+        background-color: orange;
+        
+        color: white;
+        height:50px;
+        width:150%;
+      }#sidebar .side-menu.top li a:hover {
+        color: white;
+      }
+
+       
+     */
+      /* SIDEBAR  
+       
+      */
+      
+      /* CONTENT */
+      #content {
+        position: relative;
+        width: calc(100% - 280px);
+        left: 280px;
+        transition: .3s ease;
+      }
+      #sidebar.hide ~ #content {
+        width: calc(100% - 60px);
+        left: 60px;
+      }
+      
+      /* NAVBAR */
+      #content nav {
+        height: 65px;
+        background: #FFFEFC;
+        padding: 0 24px;
+        display: flex;
+        align-items: center;
+        grid-gap: 24px;
+        font-family: var(--lato);
+        position: sticky;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+      }
+      #content nav::before {
+        content: '';
+        position: absolute;
+        width: 0px;
+        height: 0px;
+        bottom: -40px;
+        left: 0;
+        border-radius: 50%;
+        box-shadow: -20px -20px 0 var(--light);
+      }
+      #content nav a {
+        color: var(--dark);
+      }
+      #content nav .bx.bx-menu {
+        cursor: pointer;
+        color: var(--dark);
+      }
+      #content nav .nav-link {
+        font-size: 16px;
+        transition: .3s ease;
+      }
+      #content nav .nav-link:hover {
+        color: var(--blue);
+      }
+      #content nav form {
+        max-width: 400px;
+        width: 100%;
+        margin-right: auto;
+      }
+      #content nav form .form-input {
+        display: flex;
+        align-items: center;
+        height: 36px;
+      }
+      #content nav form .form-input input {
+        flex-grow: 1;
+        padding: 0 16px;
+        height: 100%;
+        border: none;
+        background: var(--grey);
+        border-radius: 36px 0 0 36px;
+        outline: none;
+        width: 100%;
+        color: var(--dark);
+      }
+      #content nav form .form-input button {
+        width: 50px;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #ffffff;
+        color: #ffffff;
+        font-size: 18px;
+        border: none;
+        outline: none;
+        border-radius: 0 36px 36px 0;
+        cursor: pointer;
+      }
+      #content nav .notification {
+        font-size: 20px;
+        position: relative;
+      }
+      #content nav .notification .num {
+        position: absolute;
+        top: -6px;
+        right: -6px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 2px solid var(--light);
+        background: var(--red);
+        color: var(--light);
+        font-weight: 700;
+        font-size: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #content nav .profile img {
+        width: 36px;
+        height: 36px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+
+
+      #content nav .switch-mode {
+        display: block;
+        min-width: 50px;
+        height: 25px;
+        border-radius: 25px;
+        background: var(--grey);
+        
+        cursor: pointer;
+        position: relative;
+      }
+
+     
+
+      #content nav .switch-mode::before {
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        bottom: 2px;
+        width: calc(25px - 4px);
+        background: blue;
+        border-radius: 50%;
+        transition: all .3s ease;
+      }
+
+      
+
+      #content nav #switch-mode:checked + .switch-mode::before {
+        left: calc(100% - (25px - 4px) - 2px);
+      }
+      /* NAVBAR     
+      #content nav .switch-mode-one {
+        display: block;
+        min-width: 50px;
+        height: 25px;
+        border-radius: 25px;
+        background: orange;
+        cursor: pointer;
+        position: relative;
+      }
+      #content nav .switch-mode-one::before {
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        bottom: 2px;
+        width: calc(25px - 4px);
+        background: white;
+        border-radius: 50%;
+        transition: all .3s ease;
+      }
+      
+      */
+      
+      /* MAIN *//*
+      #content main {
+        width: 100%;
+        padding: 36px 24px;
+        font-family: var(--poppins);
+        max-height: calc(100vh - 56px);
+        overflow-y: auto;
+      }
+      #content main .head-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        grid-gap: 16px;
+        flex-wrap: wrap;
+      }
+      #content main .head-title .left h1 {
+        font-size: 36px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: var(--dark);
+      }
+      #content main .head-title .left .breadcrumb {
+        display: flex;
+        align-items: center;
+        grid-gap: 16px;
+      }
+      #content main .head-title .left .breadcrumb li {
+        color: var(--dark);
+      }
+      #content main .head-title .left .breadcrumb li a {
+        color: var(--dark-grey);
+        pointer-events: none;
+      }
+      #content main .head-title .left .breadcrumb li a.active {
+        color: var(--blue);
+        pointer-events: unset;
+      }
+      #content main .head-title .btn-download {
+        height: 36px;
+        padding: 0 16px;
+        border-radius: 36px;
+        background: var(--blue);
+        color: var(--light);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        grid-gap: 10px;
+        font-weight: 500;
+      }
+      
+      #content main .box-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        grid-gap: 24px;
+        margin-top: 36px;
+      }
+      #content main .box-info li {
+        padding: 24px;
+        background: var(--light);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        grid-gap: 24px;
+      }
+      #content main .box-info li .bx {
+        width: 80px;
+        height: 80px;
+        border-radius: 10px;
+        font-size: 36px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #content main .box-info li:nth-child(1) .bx {
+        background: var(--light-blue);
+        color: var(--blue);
+      }
+      #content main .box-info li:nth-child(2) .bx {
+        background: var(--light-yellow);
+        color: var(--yellow);
+      }
+      #content main .box-info li:nth-child(3) .bx {
+        background: var(--light-orange);
+        color: var(--orange);
+      }
+      #content main .box-info li .text h3 {
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--dark);
+      }
+      #content main .box-info li .text p {
+        color: var(--dark);	
+      }
+      
+      #content main .table-data {
+        display: flex;
+        flex-wrap: wrap;
+        grid-gap: 24px;
+        margin-top: 24px;
+        width: 100%;
+        color: var(--dark);
+        position: relative;
+      }
+      #content main .table-data div {
+        border-radius: 20px;
+        background: var(--light);
+        padding: 24px;
+        overflow-x: auto;
+      }
+      #content main .table-data .head {
+        display: flex;
+        align-items: center;
+        grid-gap: 16px;
+        margin-bottom: 24px;
+      }
+      #content main .table-data .head h3 {
+        margin-right: auto;
+        font-size: 24px;
+        font-weight: 600;
+      }
+      #content main .table-data .head .bx {
+        cursor: pointer;
+      }
+      
+      #content main .table-data .order {
+        flex-grow: 1;
+        flex-basis: 500px;
+      }
+      #content main .table-data .order table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      #content main .table-data .order table th {
+        padding-bottom: 12px;
+        font-size: 13px;
+        text-align: left;
+        border-bottom: 1px solid var(--grey);
+      }
+      #content main .table-data .order table td {
+        padding: 16px 0;
+      }
+      #content main .table-data .order table tr td:first-child {
+        display: flex;
+        align-items: center;
+        grid-gap: 12px;
+        padding-left: 6px;
+      }
+      #content main .table-data .order table td img {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      #content main .table-data .order table tbody tr:hover {
+        background: var(--grey);
+      }
+      #content main .table-data .order table tr td .status {
+        font-size: 10px;
+        padding: 6px 16px;
+        color: var(--light);
+        border-radius: 20px;
+        font-weight: 700;
+      }
+      #content main .table-data .order table tr td .status.completed {
+        background: var(--blue);
+      }
+      #content main .table-data .order table tr td .status.process {
+        background: var(--yellow);
+      }
+      #content main .table-data .order table tr td .status.pending {
+        background: var(--orange);
+      }
+      
+      
+      #content main .table-data .todo {
+        flex-grow: 1;
+        flex-basis: 300px;
+      }
+      #content main .table-data .todo .todo-list {
+        width: 100%;
+      }
+      #content main .table-data .todo .todo-list li {
+        width: 100%;
+        margin-bottom: 16px;
+        background: var(--grey);
+        border-radius: 10px;
+        padding: 14px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      #content main .table-data .todo .todo-list li .bx {
+        cursor: pointer;
+      }
+      #content main .table-data .todo .todo-list li.completed {
+        border-left: 10px solid var(--blue);
+      }
+      #content main .table-data .todo .todo-list li.not-completed {
+        border-left: 10px solid var(--orange);
+      }
+      #content main .table-data .todo .todo-list li:last-child {
+        margin-bottom: 0;
+      }*/
+      /* MAIN */
+      /* CONTENT */
+      
+      @media screen and (max-width: 768px) {
+        #sidebar {
+          width: 200px;
+        }
+      
+        #content {
+          width: calc(100% - 60px);
+          left: 200px;
+          width:500px;
+        }
+      
+        #content nav .nav-link {
+          display: none;
+        }
+      }
+      
+      @media screen and (max-width: 576px) {
+        #content nav form .form-input input {
+          display: none;
+        }
+      
+        #content nav form .form-input button {
+          width: auto;
+          height: auto;
+          background: transparent;
+          border-radius: none;
+          color: var(--dark);
+        }
+      
+        #content nav form.show .form-input input {
+          display: block;
+          width: 100%;
+        }
+        #content nav form.show .form-input button {
+          width: 36px;
+          height: 100%;
+          border-radius: 0 36px 36px 0;
+          color: var(--light);
+          background: var(--red);
+        }
+      
+        #content nav form.show ~ .notification,
+        #content nav form.show ~ .profile {
+          display: none;
+        }
+      
+        #content main .box-info {
+          grid-template-columns: 1fr;
+        }
+      
+        #content main .table-data .head {
+          min-width: 420px;
+        }
+        #content main .table-data .order table {
+          min-width: 420px;
+        }
+        #content main .table-data .todo .todo-list {
+          min-width: 420px;
+        }
+      }
+      img {
+        border-radius: 4px;
+        padding: 5px;
+        width: 150px;
+        height: auto;
+      }
+
+      .form-input {
+        display: flex;
+        align-items: absolute;
+        height: 36px;
+        width: 90%;
+        position: center;
+      }
+      .form-input input {
+        flex-grow: 1;
+        padding: 0 16px;
+        height: 100%;
+        border: none;
+        background: white;
+        border-radius: 36px 0 0 36px;
+        outline: none;
+        width: 200%;
+        color: black;
+      }
+      .form-input button {
+        width: 150px;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.5);
+        opacity: 0.4;
+        color: #f4f5f0;
+        font-size: 18px;
+        border: none;
+        outline: none;
+        border-radius: 0 36px 36px 0;
+        cursor: pointer;
+      }
+
+      ul {
+        list-style-type: disc;
+    }
+/*sidebar*/
+
+    #sidebar::--webkit-scrollbar {
+      display: none;
+    }
+
+    #sidebar.hide {
+      width: 60px;
+    }
+    
+
+    #sidebar .side-menu li a .bx {
+      min-width: calc(60px  - ((4px + 6px) * 2));
+      display: flex;
+      justify-content: center;
+    } 
+   
+
+    #sidebar .side-menu li {
+      height: 48px;
+      background: transparent;
+      margin-left: -35px;
+      border-radius: 48px 0 0 48px;
+      padding: 4px;
+    }
+
+    #sidebar .side-menu li.active {
+      position: relative;
+     
+    }
+   
+
+
+    #sidebar .side-menu {
+      width: 100%;
+      margin-top: 48px;
+    }
+    #sidebar ul li a{
+      display: block;
+      padding: 13px 30px;
+      border-bottom: 1px solid #10558d;
+      color: rgb(241, 237, 237);
+      font-size: 16px;
+      position: relative;
+      width: 110%;
+    }
+    #sidebar ul li a .icon{
+      color: #dee4ec;
+      width: 30px;
+      display: inline-block;
+    }
+    #sidebar ul li a:hover,
+    #sidebar ul li a.active{
+ 
+      background:orange;
+      border-right: 2px solid rgb(5, 68, 104);
+    }
+  
+    #sidebar ul li a:hover .icon,
+    #sidebar ul li a.active .icon{
+      color: #0c7db1;
+    }
+  
+    </style>
+    {% load static %}
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <script type="text/javascript" src="{% static 'static/js/script.js' %}"></script>
+  </head>
+  <body>
+    
+
+
+    <!-- SIDEBAR         #sidebar ul li a:hover:before,
+  #sidebar ul li a.active:before{
+      display: block;
+  }-->
+    <section id="sidebar">
+      <!--a href="#" class="brand">
+        <i class='bx bxs-smile'></i>
+        <span class="text"><b>sciqus</b></span>
+      </a-->
+      
+      <br><br>&emsp;&emsp;&emsp;&emsp;<img src="https://www.linkpicture.com/q/Asset.png" alt="img1"><br>
+      <form action="#">
+        <div class="form-input">
+          &emsp;&emsp;<input type="search">
+          <button type="submit" class="search-btn"><i class="fa fa-search" style="font-color:white; font-size: 18px;" ></i></button>
+        </div>
+      </form>
+
+      <ul class="side-menu top">
+        <li class="active">
+          <a href="{% url 'teammemhome' %}">
+            <i class='bx bxs-dashboard' ></i>
+            &emsp;&emsp;<img src="{% static 'images/dashboard.png' %}" style="width:34px; height:35px;">&emsp;&nbsp;&nbsp;
+            <span class="text">Dashboard</span>
+          </a>
+        </li>
+        <li class="active">
+          <a href="{% url 'memtasklist' %}">
+            <i class='bx bxs-dashboard' ></i>
+            &emsp;&emsp;<img src="{% static 'images/projects.png' %}" style="width:34px; height:35px;">&emsp;&nbsp;&nbsp;
+            <span class="text">Tasks</span>
+          </a>
+        </li>
+        {% comment %}
+         <li>
+          <a href="{% url 'projectcreate' %}">
+            <i class='bx bxs-group' ></i>
+            &emsp;&emsp;<img src="{% static 'images/group.png' %}" style="width:42px; height:44px;">&emsp;
+            <span class="text">Create Projects</span> 
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'projectlist' %}">
+            <i class='bx bxs-group' ></i>
+            &emsp;&emsp;<img src="{% static 'images/group.png' %}" style="width:42px; height:44px;">&emsp;
+            <span class="text">Projects</span> 
+          </a>
+        </li>
+            {% endcomment %}
+              <!--li>  
+                <a href="{% url 'employees' %}">
+                <i class='bx bxs-group' ></i>
+                &emsp;&emsp;<img src="{% static 'images/network.png' %}" style="width:42px; height:44px;">&emsp;
+                <span class="text">Active team</span>
+              </a>
+                </li> 
+              <li> <a href="#">
+                <i class='bx bxs-group' ></i>
+                &emsp;&emsp;<img src="{% static 'images/contract.png' %}" style="width:42px; height:44px;">&emsp;
+                <span class="text">Inactive team</span>
+              </a>
+            </li-->
+           
+         
+           
+        </li>
+        <!--li>
+            <a href="{% url 'todo' %}">
+              <i class='bx bxs-group' ></i>
+              &emsp;&emsp;<img src="{% static 'images/group.png' %}" style="width:42px; height:44px;">&emsp;
+              <span class="text">View Projects</span> 
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'todo' %}">
+              <i class='bx bxs-group' ></i>
+              &emsp;&emsp;<img src="{% static 'images/group.png' %}" style="width:42px; height:44px;">&emsp;
+              <span class="text">To-do List</span> 
+            </a>
+          </li-->
+
+      </ul>
+      <!--ul class="side-menu">
+        <li>
+          <a href="#">
+            <i class='bx bxs-cog' ></i>
+            <span class="text">Settings</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="logout">
+            <i class='bx bxs-log-out-circle' ></i>
+            <span class="text">Logout</span>
+          </a>
+        </li>
+      </ul-->
+    </section>
+    <!-- SIDEBAR -->
+  
+  
+  
+    <!-- CONTENT -->
+    <section id="content">
+      <!-- NAVBAR -->
+      <nav>
+        <i class='bx bx-menu' ></i>
+        <a href="#" class="nav-link" style="color:#23395d;"><h3>Task Manager</h3></a>
+        <form action="#">
+         
+        </form>
+        
+        
+        &emsp;&emsp;&emsp;
+        {% load static %}
+        <a href="#" class="profile">
+          <img src="{% static 'images/usericon.png' %}">
+        </a>
+        <a href="{% url 'home' %}" class="logout">
+          <img src="{% static 'images/logout.png' %}" style="width:34px; height:42px;">
+        </a>
+      </nav>
+      <nav style="background-color:#23395d; color:white;">
+        <i class='bx bx-menu' ></i>
+        <a href="#" class="nav-link" style="color:white;"><b>Current Day-Date-Year: </b>{% now "l, j F Y" %}</a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+        
+        <button style="background-color:orange; widht:100%; height:38px;"><a href="{% url 'time_tracker' %}" class="nav-link" style="color:white;">Punch In/Punch Out
+        </button>
+        
+        </a>
+      </nav>
+      </nav>
+      
